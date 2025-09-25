@@ -1,0 +1,9 @@
+/connection/connect.php
+js/site_url.js
+/nbproject
+/nbproject/private/
+/vendor
+/uploads
+/db
+/backup
+format.php
