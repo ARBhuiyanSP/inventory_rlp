@@ -120,11 +120,11 @@ if (isset($NotesheetListData) && !empty($NotesheetListData)) {
                             <?php //} ?>	
 
 							<?php //if(check_permission('notesheet-approve') && get_status_name($adata->notesheet_status)=='Approve' && $adata->is_wo==0){ ?>
-							<?php if(get_status_name($adata['notesheet_status'])=='Approve' && $adata['is_wo']==0 && $role_name == 'sa'){ ?>
+							<?php //if(get_status_name($adata['notesheet_status'])=='Approve' && $adata['is_wo']==0 && $role_name == 'sa'){ ?>
                             <a title="Edit RLP" class="btn btn-sm btn-success" href="create_workorder.php?id=<?php echo $adata['id']; ?>">
                                 <span class="fa fa-plus"> WO</span>
                             </a>
-                            <?php } ?>
+                            <?php //} ?>
                         </td>
                     </tr>
                 <?php } ?>

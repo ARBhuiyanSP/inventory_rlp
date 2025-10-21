@@ -1,6 +1,9 @@
 <?php 
 include 'header.php';
-
+if(!check_permission('assign-list')){ 
+        include("404.php");
+        exit();
+ } 
 // Pagination setup
 $limit = 10;
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;

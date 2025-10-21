@@ -118,7 +118,7 @@
 												if (isset($projectsData) && !empty($projectsData)) {
 													foreach ($projectsData as $data) {
 														?>
-														<option value="<?php echo $data['id']; ?>" <?php if(isset($editDatas->supplier) && $editDatas->supplier ==$data['id']){echo "selected";} ?>><?php echo $data['vendor_name']; ?></option>
+														<option value="<?php echo $data['id']; ?>" <?php if(isset($editDatas->supplier) && $editDatas->supplier ==$data['vendor_name']){echo "selected";} ?>><?php echo $data['vendor_name']; ?></option>
 														<?php
 													}
 												}

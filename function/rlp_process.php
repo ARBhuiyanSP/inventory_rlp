@@ -512,6 +512,15 @@ function getRLPListDataW(){
 			$sql      = '* FROM `rlp_info` WHERE 1=1 AND `is_delete`=0 ORDER BY `rlp_status` DESC , `created_at` DESC  ';
            
             $listData   = getTableDataListByTableName($sql);
+	}else if($role_name == 'ad'){
+			$listData   =   [];
+            // get others rlp for approval:
+            $listData1   = getRlpInfoAcknowledgeData($user_id);
+            // get own RLp:
+			
+			$sql      = '* FROM `rlp_info` WHERE 1=1 AND `is_delete`=0 ORDER BY `rlp_status` DESC , `created_at` DESC  ';
+           
+            $listData   = getTableDataListByTableName($sql);
 	}else if($role_name == 'ak'){
 			$listData   =   [];
             // get others rlp for approval:

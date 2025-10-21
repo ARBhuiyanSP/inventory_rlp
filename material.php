@@ -1,8 +1,3 @@
-
-
-
-
-
 <?php include 'header.php' ?>
 <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet">
 <style>
@@ -13,10 +8,10 @@
 </style>
 <?php
 //Start of permission
-/* if(!check_permission('material-list')){  
+if(!check_permission('material-list')){  
     include('404.php');
     exit();
- }  */ ?>
+ }  ?>
 
 <div class="container-fluid">
     <!-- DataTables Example -->

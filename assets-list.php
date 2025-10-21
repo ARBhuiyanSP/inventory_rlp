@@ -2,10 +2,10 @@
 include 'header.php';
 $store_id = $_SESSION['logged']['store_id'];
 
-/* if (!check_permission('material-receive-add')) { 
+if (!check_permission('asset-list')) { 
     include("404.php");
     exit();
-} */ 
+}  
 
 // ================= Pagination + Search =================
 $limit = 12;

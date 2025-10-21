@@ -1,4 +1,10 @@
-<?php include 'header.php' ?>
+<?php include 'header.php';
+if(!check_permission('material-category')){ 
+        include("404.php");
+        exit();
+ }
+
+ ?>
 
 
 <style type="text/css">

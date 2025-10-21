@@ -1,5 +1,5 @@
-<?php include 'header.php' ?>
-<?php if(!check_permission('material-receive-list')){ 
+<?php include 'header.php';
+if(!check_permission('equipments-list')){ 
         include("404.php");
         exit();
  } ?>

@@ -145,6 +145,7 @@ function hasAccessPermission($user_id, $page_name, $accessType) {
 
     return $return;
 }
+
 function getTableDataByTableNameAndIntId($table, $int_id, $dataType) {
     global $conn;
     $dataContainer  =   [];
@@ -1961,16 +1962,15 @@ function getTableDataByTableName($table, $order = 'DESC', $column='id', $dataTyp
 
 
 function check_permission($url){
+
     $permissin_urls = $_SESSION['logged']['permissin_urls'];
     if(in_array($url, $permissin_urls)){
         return true;
-    }else{
-        return false;
     }
-
-    
-
-    
+        else
+    {
+        return false;
+    }  
 }
 
 function oldPartNumberString($material_key_array,$inv_material_id){

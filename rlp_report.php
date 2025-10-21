@@ -83,9 +83,13 @@ print_r($resultSet);
 echo "</pre>"; */
 	
 	if($resultSet->num_rows > 0){
-		echo "<div id='printableArea'><center><h1 align='center'><img src='images/spl.png' height='50' style='padding-top:10px'></h1><h2>SAIF POWERTEC LIMITED</h2>
-							<h5>KAMALAPUR ICD MOTIJHEEL, DHAKA</h5>
-							<p>DEPARTMENT:CTED-DHAKA(MAINTENANCE)KAMALAPUR ICD, PROJECT</p><h5>RLP List Report</h5>From :";
+		echo "<div id='printableArea'><center><h1 align='center'>"; ?>
+		<img src="<?= $settings['logo']; ?>" height="50px;"/><br>
+		<h5><?= $settings['company_address']; ?></h5>
+		<h3><?= $settings['name']; ?></h3>
+		<h5>Phone:<?= $settings['company_contact']; ?></h5>
+		
+		<?php echo "<h5>RLP List Report</h5>From :";
 		echo "<span style='text-decoration:underline'>" . date('jS F Y', strtotime($from_date))."</span>";
 		echo " To ";
 		echo "<span style='text-decoration:underline'>" . date('jS F Y', strtotime($to_date))."</span></center>";

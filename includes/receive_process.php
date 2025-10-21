@@ -65,6 +65,10 @@ if (isset($_POST['receive_submit']) && !empty($_POST['receive_submit'])) {
 		
 		
         $remarks            = $_POST['remarks'];  
+		
+		$vat		= $_POST['vat'];
+        $grandTotal		= $_POST['grandTotal'];
+		
         $received_by            = $_POST['received_by'];  
 		
         //$received_by            = $_SESSION['logged']['user_id'];        
@@ -131,7 +135,7 @@ if (isset($_POST['receive_submit']) && !empty($_POST['receive_submit'])) {
     /*
     *  Insert Data Into inv_receive Table:
     */
-    $query2 = "INSERT INTO `inv_receive` (`mrr_no`,`mrr_date`,`purchase_id`,`receive_acct_id`,`supplier_id`,`postedtogl`,`remarks`,`receive_type`,`project_id`,`warehouse_id`,`store_id`,`receive_unit_id`,`receive_total`,`no_of_material`,`challanno`,`challan_date`,`part_no`,`wo_no`,`ns_no`,`requisitionno`,`received_by`,`approval_status`,`approved_by`,`approved_at`,`approval_remarks`,`mrr_image`) VALUES ('$mrr_no','$mrr_date','$purchase_id','6-14-010','$supplier_id','0','$remarks','Credit','$project_id','$warehouse_id','$store_id','1','$receive_total','$no_of_material','$challan_no','$challan_date','$part_no','$wo_no','$ns_no','$requisition_no','$received_by','$approval_status','$approved_by','$approved_at','$approval_remarks','$mrr_image')";
+    $query2 = "INSERT INTO `inv_receive` (`mrr_no`,`mrr_date`,`purchase_id`,`receive_acct_id`,`supplier_id`,`postedtogl`,`remarks`,`receive_type`,`project_id`,`warehouse_id`,`store_id`,`receive_unit_id`,`receive_total`,`no_of_material`,`challanno`,`challan_date`,`part_no`,`wo_no`,`ns_no`,`requisitionno`,`received_by`,`approval_status`,`approved_by`,`approved_at`,`approval_remarks`,`mrr_image`,`vat`,`grandTotal`) VALUES ('$mrr_no','$mrr_date','$purchase_id','6-14-010','$supplier_id','0','$remarks','Credit','$project_id','$warehouse_id','$store_id','1','$receive_total','$no_of_material','$challan_no','$challan_date','$part_no','$wo_no','$ns_no','$requisition_no','$received_by','$approval_status','$approved_by','$approved_at','$approval_remarks','$mrr_image','$vat','$grandTotal')";
     $result2 = $conn->query($query2);    
     /*
     *  Insert Data Into inv_supplierbalance Table:

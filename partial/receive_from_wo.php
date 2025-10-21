@@ -75,20 +75,20 @@
 			<div class="col-xs-2">
 				<div class="form-group">
 					<label for="id">Supplier</label><span class="reqfield"> ***required</span>
-					<select class="form-control material_select_2" id="supplier_id" name="supplier_id" required >
+					<select class="form-control select2" id="supplier_id" name="supplier_id" required >
 						<option value="">Select</option>
 						<?php
-						$projectsData = getTableDataByTableName('suppliers');
+						$projectsData = getTableDataByTableName('vendors');
 
 						if (isset($projectsData) && !empty($projectsData)) {
 							foreach ($projectsData as $data) {
-									if($wo_info->supplier_name == $data['name']){
+									if($wo_info->supplier_name == $data['vendor_name']){
 									$selected	= 'selected';
 									}else{
 									$selected	= 'disabled';
 									}
 								?>
-								<option value="<?php echo $data['code']; ?>" <?php echo $selected; ?>><?php echo $data['name']; ?></option>
+								<option value="<?php echo $data['vendor_id']; ?>" <?php echo $selected; ?>><?php echo $data['vendor_name']; ?></option>
 								<?php
 							}
 						}

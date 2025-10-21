@@ -313,7 +313,9 @@ function execute_cs_details_table($cs_info_id){
     /*
      * ***************************** rlp_details table operation ********************
      */
-    for($count 		= 0; $count<count($_POST['material_name']); $count++){        
+	 $totalamount = 0;
+    for($count 		= 0; $count<count($_POST['material_name']); $count++){
+				
 	
        
 		
@@ -369,6 +371,8 @@ function execute_cs_details_table($cs_info_id){
 			$selected_supplier_id	= (isset($_POST['supplier_name_s3'][$count]) && !empty($_POST['supplier_name_s3'][$count]) ? trim(mysqli_real_escape_string($conn,$_POST['supplier_name_s3'][$count])) : '');
 		}
 		
+		$totalamount += $selected_amount;
+		
         $dataParam     =   [
             //'id'                =>  get_table_next_primary_id('rlp_details'),
             'cs_id'       =>  $cs_info_id,
@@ -405,15 +409,24 @@ function execute_cs_details_table($cs_info_id){
 		*/
 		$queryBal = "UPDATE `rlp_details` SET `unit_price`='$selected_unit_price', `amount`= '$selected_amount', `supplier`= '$selected_supplier_id' WHERE `id` = '$rlp_details_id'";
 		$conn->query($queryBal); 
+			
+		
+    }
 		/*
 		*  update rlp_info is_cs:
 		*/
-		$queryCs = "UPDATE `rlp_info` SET `is_cs`='1' WHERE `id` = '$rlp_info_id'";
+		$queryCs = "UPDATE `rlp_info` SET `is_cs`='1', `totalamount`=$totalamount WHERE `id` = '$rlp_info_id'";
 		$conn->query($queryCs); 
 		
+		// insert rlp adjustment
+		
+		$created_by            =  $_SESSION['logged']['user_id'];
+        $created_at            =  date('Y-m-d h:i:s');
 		
 		
-    }
+		$queryRA = "INSERT INTO `rlp_adjustment` (`adj_date`,`rlp_id`,`rlp_adj_no`,`details`,`dr_amount`,`cr_amount`,`attachment`,`remarks`,`created_at`,`created_by`) VALUES ('$created_at','$rlp_info_id','','New RLP','$totalamount','0','','$remarks','$created_at','$created_by')";
+		
+		$conn->query($queryRA);
 }
 
 function getCSListDataW(){

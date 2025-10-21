@@ -1,8 +1,8 @@
 <?php include 'header.php'; ?>
-<?php/*  if(!check_permission('material-receive-add')){ 
+<?php  if(!check_permission('material-receive-add')){ 
         include("404.php");
         exit();
- } */ ?>
+ }  ?>
 <!-- Left Sidebar End -->
 <!--<script src="https://code.jquery.com/jquery-1.12.4.js"></script>-->
 <!--<link href="css/form-entry.css" rel="stylesheet">-->
@@ -215,6 +215,19 @@
 									<td width="80%" style="text-align:right;">Total Amount</td>
 									<td><input type="text" class="form-control" maxlength="30" name="sub_total_amount" id="allsum" readonly /></td>
 								</tr>
+                                <tr>
+                                    <td colspan="1" style="text-align:right">VAT [%] : </td>
+                                    <td colspan="2">
+                                        <input type="number" class="form-control" id="vat" onkeyup="calculate()" step=".01" required /><small style="color:red">Type '0' If Not Applicable</small>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" name="vat" id="vatamount" onkeyup="calculate()"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="80%" style="text-align:right;">Grand Total Amount</td>
+                                    <td><input type="text" class="form-control" maxlength="30" name="grandTotal" id="grandTotal" readonly /></td>
+                                </tr>
 							</table>
                         </div>
                     </div>
@@ -317,6 +330,30 @@
             }
         }
         document.getElementById('allsum').value = newTot.toFixed(2);
+		 calculate();
+    }
+	function calculate(){
+        
+        
+        let allsum = parseFloat($('#allsum').val()).toFixed(2);
+        let vat = parseFloat($('#vat').val()).toFixed(2);
+        
+            
+        let vatPerc="";
+        if(isNaN(allsum) || isNaN(vat)){
+            vatPerc=" ";
+           }else{
+           vatPerc = ((allsum*vat)/ 100).toFixed(2);
+           }
+        
+        $('#vatamount').val(vatPerc);
+        let pVat = parseFloat($('#vatamount').val()).toFixed(2);
+        let grandTotal = (parseFloat(allsum) + parseFloat(pVat)).toFixed(2);
+
+        
+        document.getElementById('grandTotal').value = grandTotal;
+          
+        
     }
   
 </script>

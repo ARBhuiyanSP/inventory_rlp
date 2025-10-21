@@ -19,16 +19,16 @@
 			</center>
 			<h5><b>Subject : <?php echo $notesheets_master->subject ?></b></h5></br>
 			<h5>
-				<b>Supplier Name : <?php echo getNameByIdAndTable('suppliers',$notesheets_master->supplier_name) ?></b></br>
+				<b>Supplier Name : <?php //echo getNameByIdAndTable('vendors',$notesheets_master->supplier_name) ?></b></br>
 				<?php 
 					$supplier_id = $notesheets_master->supplier_name;
-					$sqls = "select * from `suppliers` where `id`='$supplier_id'";
+					$sqls = "select * from `vendors` where `id`='$supplier_id'";
 					$results = mysqli_query($conn, $sqls);
 					$rows = mysqli_fetch_array($results);
 				?>
 				Address : <?php echo $rows['address'];?></br>
-				Concern person :  <?php echo $rows['contact_person'];?></br>
-				Call :  <?php echo $rows['supplier_phone'];?>, E-Mail:  <?php echo $rows['email'];?></br>
+				Concern person :  <?php //echo $rows['contact_person'];?></br>
+				Call :  <?php //echo $rows['supplier_phone'];?>, E-Mail:  <?php //echo $rows['email'];?></br>
 			</h5>
 		</div>
         <!-- /.col -->

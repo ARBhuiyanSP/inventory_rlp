@@ -79,10 +79,10 @@ if(isset($_GET['submit'])){
 				<div class="col-sm-12">	
 					<center>
 						<p>
-							<img src="images/Saif_Engineering_Logo_165X72.png" height="50px;"/><br>
-							<h2>SAIF POWERTEC LIMITED</h2>
-							<h5>KAMALAPUR ICD MOTIJHEEL, DHAKA</h5>
-							<p>DEPARTMENT:CTED-DHAKA(MAINTENANCE)KAMALAPUR ICD, PROJECT</p>
+							<img src="<?= $settings['logo']; ?>" height="50px;"/><br>
+							<h5><?= $settings['company_address']; ?></h5>
+							<h3><?= $settings['name']; ?></h3>
+							<h5>Phone:<?= $settings['company_contact']; ?></h5>
 							<span>Material Received Report</span></br>
 							From <span class="dtext"><?php echo date("jS F Y", strtotime($from_date));?></span> To  <span class="dtext"><?php echo date("jS F Y", strtotime($to_date));?> </span><br>
 						</p>

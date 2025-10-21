@@ -1,10 +1,10 @@
 <?php 
 include 'header.php';
 ?>
-<?php /* if(!check_permission('user-list')){ 
+<?php  if(!check_permission('workorder-list')){ 
         include("404.php");
         exit();
- } */ ?>
+ }  ?>
 <!-- Left Sidebar End -->
 <div class="container-fluid">
     <!-- Breadcrumbs-->
@@ -12,12 +12,12 @@ include 'header.php';
         <li class="breadcrumb-item">
             <a href="dashboard.php">Dashboard</a>
         </li>
-        <li class="breadcrumb-item active"> RLP List</li>
+        <li class="breadcrumb-item active"> Workorder List</li>
     </ol>
     <!-- DataTables Example -->
     <div class="card mb-3">
         <div class="card-header">
-            <i class="fas fa-table"></i> RLP List
+            <i class="fas fa-table"></i> Workorder List
             <a href="rlp_create.php" style="float:right"><i class="fas fa-plus"></i> Create New<a>
         </div>
         <div class="card-body">

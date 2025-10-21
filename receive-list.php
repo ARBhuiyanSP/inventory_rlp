@@ -1,11 +1,9 @@
 <?php 
 include 'header.php';
-?>
-<?php 
-/* if(!check_permission('receive-list')){ 
+if(!check_permission('material-receive-list')){ 
     include("404.php");
     exit();
-} */ 
+}  
 ?>
 
 <div class="container-fluid">

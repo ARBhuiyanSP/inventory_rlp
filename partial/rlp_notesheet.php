@@ -74,15 +74,15 @@
 			<div class="col-xs-2">
 				<div class="form-group">
 					<label for="id">Supplier</label><span class="reqfield"> ***required</span>
-					<select class="form-control material_select_2" id="supplier_name" name="supplier_name" required onchange="getItemCodeByParam(this.value, 'suppliers', 'code', 'supplier_id');">
+					<select class="form-control select2" id="supplier_name" name="supplier_name" required onchange="getItemCodeByParam(this.value, 'vendors', 'vendor_id', 'supplier_id');">
 						<option value="">Select</option>
 						<?php
-						$projectsData = getTableDataByTableName('suppliers');
+						$projectsData = getTableDataByTableName('vendors');
 
 						if (isset($projectsData) && !empty($projectsData)) {
 							foreach ($projectsData as $data) {
 								?>
-								<option value="<?php echo $data['id']; ?>"><?php echo $data['name']; ?></option>
+								<option value="<?php echo $data['id']; ?>"><?php echo $data['vendor_name']; ?></option>
 								<?php
 							}
 						}

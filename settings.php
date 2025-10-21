@@ -1,9 +1,9 @@
 <?php 
 include 'header.php';
-/* if(!check_permission('settings-edit')){ 
+ if(!check_permission('settings')){ 
     include("404.php");
     exit();
-} */ 
+}  
 
 // Update settings
 if(isset($_POST['update'])){

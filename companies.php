@@ -71,12 +71,11 @@ $stmt->execute();
 $result = $stmt->get_result();
 $stmt->close();
 
-
-
-/* if(!check_permission('user-add')){ 
+if(!check_permission('company-list')){ 
         include("404.php");
         exit();
- }  */?>
+ } ?>
+ 
 <!-- Left Sidebar End -->
 <!--<script src="https://code.jquery.com/jquery-1.12.4.js"></script>-->
 <!--<link href="css/form-entry.css" rel="stylesheet">-->

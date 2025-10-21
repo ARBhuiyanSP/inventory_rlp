@@ -116,10 +116,10 @@ if(isset($_GET['submit'])){
 						?>
 					<center>
 						<p>
-							<img src="images/Saif_Engineering_Logo_165X72.png" height="50px;"/><br>
-							<h2>SAIF POWERTEC LIMITED</h2>
-							<h5>KAMALAPUR ICD MOTIJHEEL, DHAKA</h5>
-							<p>DEPARTMENT:CTED-DHAKA(MAINTENANCE)KAMALAPUR ICD, PROJECT</p>
+							<img src="<?= $settings['logo']; ?>" height="50px;"/><br>
+							<h5><?= $settings['company_address']; ?></h5>
+							<h3><?= $settings['name']; ?></h3>
+							<h5><?= $settings['company_contact']; ?></h5>
 							<span>Materialwise Received Report</span></br>
 							<span style="font-size:18px;font-weight:bold;">
 								Material Name : <?php echo getMaterialNameByIdAndTableandId('inv_material',$material_name); ?></span></br>

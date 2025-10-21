@@ -1,10 +1,10 @@
 <?php 
-include 'header.php';
-?>
-<?php /* if(!check_permission('user-list')){ 
+include 'header.php'; 
+if(!check_permission('rlp-list')){ 
         include("404.php");
         exit();
- } */ ?>
+	} 
+?>
 <!-- Left Sidebar End -->
 <div class="container-fluid">
     <!-- Breadcrumbs-->
@@ -21,9 +21,8 @@ include 'header.php';
             <a href="rlp_create.php" style="float:right"><i class="fas fa-plus"></i> Create New<a>
         </div>
         <div class="card-body">
-                        <?php include 'partial/rlp_list.php'; ?>
-                        <?php //include 'partial/rlp_list2.php'; ?>
-                     </div>
+			<?php include 'partial/rlp_list.php'; ?>
+		 </div>
     </div>
 
 </div>

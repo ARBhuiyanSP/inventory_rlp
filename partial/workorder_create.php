@@ -53,12 +53,12 @@
             <div class="col-xs-6">
 				<div class="form-group">
 					<label for="exampleId">Supplier Name</label>
-					<input name="supplier_name" type="text" class="form-control" id="supplier_name" value="<?php echo getNameByIdAndTable('suppliers',$notesheets_master->supplier_name) ?>" autocomplete="off" readonly />
+					<input name="supplier_name" type="text" class="form-control" id="supplier_name" value="<?php echo getSupplierNameByIdAndTable('vendors',$notesheets_master->supplier_name) ?>" autocomplete="off" readonly />
 				</div>
 			</div>
 			<?php 
 					$supplier_id = $notesheets_master->supplier_name;
-					$sqls = "select * from `suppliers` where `id`='$supplier_id'";
+					$sqls = "select * from `vendors` where `id`='$supplier_id'";
 					$results = mysqli_query($conn, $sqls);
 					$rows = mysqli_fetch_array($results);
 				?>
@@ -71,13 +71,13 @@
             <div class="col-xs-4">
 				<div class="form-group">
 					<label for="exampleId">Concern Person</label>
-					<input name="concern_person" type="text" class="form-control" id="concern_person" value="<?php echo $rows['contact_person'];?>" autocomplete="off" readonly />
+					<input name="concern_person" type="text" class="form-control" id="concern_person" value="<?php echo $rows['vendor_name'];?>" autocomplete="off" readonly />
 				</div>
 			</div>
             <div class="col-xs-4">
 				<div class="form-group">
 					<label for="exampleId">Cell Number</label>
-					<input name="cell_number" type="text" class="form-control" id="cell_number" value="<?php echo $rows['supplier_phone'];?>" autocomplete="off" readonly />
+					<input name="cell_number" type="text" class="form-control" id="cell_number" value="<?php echo $rows['phone'];?>" autocomplete="off" readonly />
 				</div>
 			</div>
             <div class="col-xs-4">

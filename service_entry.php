@@ -1,5 +1,9 @@
 <?php 
 include 'header.php';
+if (!check_permission('service-area-add')) { 
+    include("404.php");
+    exit();
+}
 ?>
 
 <div class="container-fluid">

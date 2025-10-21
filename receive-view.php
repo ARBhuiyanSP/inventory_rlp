@@ -49,7 +49,7 @@ $mrr_no=$_GET['no']; ?>
 							<div class="col-sm-6">	
 								<p>
 								<img src="images/spl.png" height="50px;"/>
-								<h5>88 Innovations Engineering Ltd</h5></p></div>
+								<h5>Chattogram Port</h5></p></div>
 							<div class="col-sm-6">
 								<table class="table table-bordered">
 									<tr>
@@ -135,7 +135,7 @@ $mrr_no=$_GET['no']; ?>
 								</tr>
 								<?php } ?>
 								<tr>
-									<td colspan="4" class="grand_total">Grand Total:</td>
+									<td colspan="4" class="grand_total"> </td>
 									<td>
 										<?php 
 										$sql2 			= "SELECT sum(receive_qty) FROM  `inv_receivedetail` where `mrr_no`='$mrr_no'";
@@ -146,7 +146,7 @@ $mrr_no=$_GET['no']; ?>
 										}
 										?>
 									</td>
-									<td></td>
+									<td style="text-align: right;">Total:</td>
 									<td>
 									<?php 
 										$sql2			= "SELECT sum(total_receive) FROM `inv_receivedetail` where `mrr_no`='$mrr_no'";
@@ -159,6 +159,20 @@ $mrr_no=$_GET['no']; ?>
 									</td>
 								</tr>
 								<tr>
+									<td colspan="6" style="text-align: right;">Vat Amount:</td>
+									<td><?php 
+									$vatTotal	= number_format((float)$rowd['vat'], 2, '.', '');
+										echo $vatTotal ;
+									 ?></td>
+								</tr>
+								<tr>
+									<td colspan="6" style="text-align: right;">Grand Total:</td>
+									<td><?php 
+									$grandTotal	= number_format((float)$rowd['grandTotal'], 2, '.', '');
+										echo $grandTotal ;
+									 ?></td>
+								</tr>
+								<tr>
 									<td colspan="2" class="grand_total">Remarks:</td>
 									<td colspan="5">
 									<?php echo $rowd['remarks'];
@@ -168,7 +182,7 @@ $mrr_no=$_GET['no']; ?>
 							</tbody>
 						</table> 
 						<b>Total Amount in words: 
-							<span class="amountWords"><?php echo convertNumberToWords2($totalAmount).' Only';?></span>
+							<span class="amountWords"><?php echo convertNumberToWords2($grandTotal).' Only';?></span>
 						</b>
 						<div class="row" style="text-align:center">
 							<div class="col-sm-5"></br><?php 

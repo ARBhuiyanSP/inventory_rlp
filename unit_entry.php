@@ -1,10 +1,10 @@
 <?php 
 include 'header.php';
 
- // if(!check_permission('unit-list')){ 
-        // include("404.php");
-        // exit();
- // } ?>
+  if(!check_permission('unit')){ 
+         include("404.php");
+         exit();
+  } ?>
 <!-- Left Sidebar End -->
 <div class="container-fluid">
     <!-- Breadcrumbs-->

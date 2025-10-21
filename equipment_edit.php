@@ -1,10 +1,10 @@
 <?php 
 include 'header.php';
 ?>
-<?php /* if(!check_permission('user-list')){ 
+<?php  if(!check_permission('equipments-edit')){ 
         include("404.php");
         exit();
- } */ ?>
+ }  ?>
 <!-- Left Sidebar End -->
 <div class="container-fluid">
     <!-- Breadcrumbs-->
