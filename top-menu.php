@@ -82,27 +82,7 @@
             </a>
             <?php } ?>
 			 
-			<?php if(check_permission('rlp-types')){ ?>
-                    <a class="dropdown-item" href="rlp_types.php">
-                <i class="fa fa-bullseye" aria-hidden="true" style=""></i>
-                <span class="sub_menu_text_design"> RLP Types</span>
-            </a>
-             <?php } ?>
-			 
-            <?php if(check_permission('approval-chain')){ ?>
-                    <a class="dropdown-item" href="rlp_chain.php">
-                <i class="fa fa-bullseye" aria-hidden="true" style=""></i>
-                <span class="sub_menu_text_design"> RLP Approval Chain</span>
-            </a>
-             <?php } ?>
-			 
-			  
-            <?php if(check_permission('approval-chain')){ ?>
-                    <a class="dropdown-item" href="notesheet_approve_chain_list.php">
-						<i class="fa fa-bullseye" aria-hidden="true" style=""></i>
-						<span class="sub_menu_text_design"> NS Approval Chain</span>
-					</a>
-             <?php    } ?>
+			
 			 
 			 <?php if(check_permission('user-list')){ ?>
 				
@@ -149,6 +129,29 @@
 		   
         </div>
       </li>
+	  
+	  <?php } ?>
+	  
+	       <!--  Palash 09/nov/25-->
+	  
+	    <?php if(check_permission('budget')){ ?>
+	  <li class="nav-item dropdown no-arrow">
+        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:#000;">
+          <b>BUDGET <i class="fa fa-caret-down"></i></b>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+               
+			<a class="dropdown-item" href="op_entry.php"><i class="fa fa-bullseye" aria-hidden="true" style=""></i><span class="sub_menu_text_design">Budget Entry</span></a>
+			
+			
+			
+			<a class="dropdown-item" href="op-list.php"><i class="fa fa-list" aria-hidden="true" style=""></i><span class="sub_menu_text_design">Budget List</span></a>
+			
+			<a class="dropdown-item" href="op_sheet.php"><i class="fa fa-list" aria-hidden="true" style=""></i><span class="sub_menu_text_design">Budget Compare Report</span></a>
+		   
+        </div>
+      </li>
+	  
 	  <?php } ?>
 	  
 	  <?php if(check_permission('asset-list')){ ?>
@@ -185,34 +188,148 @@
         </div>
       </li>
 	  <?php } ?>
+	  
+	  
+	  
+	  
+	  		<?php if(check_permission('rlp-list')){ ?>
+        <li class="nav-item dropdown no-arrow">
+			<a class="nav-link dropdown-toggle" href="#" id="rlpDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:#000;">
+			  <b>PROCUREMENT<i class="fa fa-caret-down"></i></b>
+			</a>
+			<div class="dropdown-menu dropdown-menu-right" aria-labelledby="rlpDropdown">
+			
+			
+			
+			<?php if(check_permission('rlp-types')){ ?>
+                    <a class="dropdown-item" href="rlp_types.php">
+                <i class="fa fa-bullseye" aria-hidden="true" style=""></i>
+                <span class="sub_menu_text_design"> RLP Types</span>
+            </a>
+             <?php } ?>
+			 
+            <?php if(check_permission('approval-chain')){ ?>
+                    <a class="dropdown-item" href="rlp_chain.php">
+                <i class="fa fa-bullseye" aria-hidden="true" style=""></i>
+                <span class="sub_menu_text_design"> RLP Approval Chain</span>
+            </a>
+             <?php } ?>
+			 
+			  
+            <?php if(check_permission('approval-chain')){ ?>
+                    <a class="dropdown-item" href="notesheet_approve_chain_list.php">
+						<i class="fa fa-bullseye" aria-hidden="true" style=""></i>
+						<span class="sub_menu_text_design"> NS Approval Chain</span>
+					</a>
+             <?php    } ?>
+			 
+			  <hr>
+			
+				<?php if(check_permission('rlp-add')){ ?>
+				<a class="dropdown-item" href="rlp_create.php">
+					<i class="fa fa-bullseye" aria-hidden="true" style=""></i>
+					<span class="sub_menu_text_design"> RLP Entry</span>
+				</a> 
+				<?php } ?>
+				
+				
+				<a class="dropdown-item" href="rlp_list.php">
+					<i class="fa fa-bullseye" aria-hidden="true" style=""></i>
+					<span class="sub_menu_text_design"> RLP List</span>
+				</a> 
+				
+				
+				
+				
+				
+					<?php if(check_permission('cs')){ ?>
+	
+            <a class="dropdown-item" href="cs_list.php">
+                <i class="fa fa-bullseye" aria-hidden="true" style=""></i>
+                <span class="sub_menu_text_design"> CS Entry </span>
+            </a> 
+			 <?php } ?>
+			 <hr>
+			 
+			 
+			<?php if(check_permission('notesheet-list')){ ?> 
+            <a class="dropdown-item" href="notesheets_list.php">
+                <i class="fa fa-bullseye" aria-hidden="true" style=""></i>
+                <span class="sub_menu_text_design"> Notesheet </span>
+            </a> 
+			 <?php } ?>
+			 <hr>
+				
+				<?php if(check_permission('workorder-list')){ ?> 
+            <a class="dropdown-item" href="workorders_list.php">
+                <i class="fa fa-bullseye" aria-hidden="true" style=""></i>
+                <span class="sub_menu_text_design"> Work order</span>
+            </a> 
+			
+			 <?php } ?>
+				 <hr>
+				<?php if(check_permission('rlp-adjustment')){ ?>
+				<a class="dropdown-item" href="rlp-adjustment.php">
+					<i class="fa fa-bullseye" aria-hidden="true" style=""></i>
+					<span class="sub_menu_text_design"> RLP Adjustment</span>
+				</a> 
+				<?php } ?>
+				
+				
+			</div>
+		</li>
+		<?php } ?>
+		
 	   <li class="nav-item dropdown no-arrow">
 		<a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:#000;">
-          <b>RECEIVE <i class="fa fa-caret-down"></i></b>
+          <b>INVENTORY <i class="fa fa-caret-down"></i></b>
         </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
 			<?php if(check_permission('material-receive-add')){ ?>
-			<a class="dropdown-item" href="receive_entry.php"><i class="fa fa-bullseye" aria-hidden="true" style=""></i><span class="sub_menu_text_design">Receive Entry</span></a>
+			<a class="dropdown-item" href="receive_entry.php"><i class="fa fa-bullseye" aria-hidden="true" style=""></i><span class="sub_menu_text_design">MATERIAL RECEIVE</span></a>
 			<?php } ?>
 			
 			<?php if(check_permission('material-receive-list')){ ?>
-			<a class="dropdown-item" href="receive-list.php"><i class="fa fa-bullseye" aria-hidden="true" style=""></i><span class="sub_menu_text_design">Receive List</span></a>
+			<a class="dropdown-item" href="receive-list.php"><i class="fa fa-bullseye" aria-hidden="true" style=""></i><span class="sub_menu_text_design">RECEIVE LIST</span></a>
 		    <?php } ?>
-		</div>
-	   </li>
-	   <li class="nav-item dropdown no-arrow">
-		<a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:#000;">
-          <b>ISSUE <i class="fa fa-caret-down"></i></b>
-        </a>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+			<hr>
 			<?php if(check_permission('material-issue-add')){ ?>
-			<a class="dropdown-item" href="issue_entry.php"><i class="fa fa-bullseye" aria-hidden="true" style=""></i><span class="sub_menu_text_design">Issue Entry</span></a>
+			<a class="dropdown-item" href="issue_entry.php"><i class="fa fa-bullseye" aria-hidden="true" style=""></i><span class="sub_menu_text_design">MAERIAL ISSUE</span></a>
 			<?php } ?>
-			
 			<?php if(check_permission('material-issue-list')){ ?>
-			<a class="dropdown-item" href="issue_list.php"><i class="fa fa-bullseye" aria-hidden="true" style=""></i><span class="sub_menu_text_design">Issue List</span></a>
+			<a class="dropdown-item" href="issue_list.php"><i class="fa fa-bullseye" aria-hidden="true" style=""></i><span class="sub_menu_text_design">ISSUE LIST</span></a>
 		    <?php } ?>
+			<hr>
+			<?php if(check_permission('material-return-add')){ ?>
+			<a class="dropdown-item" href="issue_entry.php"><i class="fa fa-bullseye" aria-hidden="true" style=""></i><span class="sub_menu_text_design">MATERIAL RETURN</span></a>
+			<?php } ?>
+			<?php if(check_permission('material-return-list')){ ?>
+			<a class="dropdown-item" href="issue_list.php"><i class="fa fa-bullseye" aria-hidden="true" style=""></i><span class="sub_menu_text_design">RETUEN LIST</span></a>
+		    <?php } ?>
+			
+			
+			<hr>
+			<?php if(check_permission('p2p-transfer-add')){ ?>
+			<a class="dropdown-item" href="issue_entry.php"><i class="fa fa-bullseye" aria-hidden="true" style=""></i><span class="sub_menu_text_design">P2P  TRANSFER</span></a>
+			<?php } ?>
+			<?php if(check_permission('p2p-transfer-list')){ ?>
+			<a class="dropdown-item" href="issue_list.php"><i class="fa fa-bullseye" aria-hidden="true" style=""></i><span class="sub_menu_text_design">P2P LIST</span></a>
+		    <?php } ?>
+			
+			
+			<hr>
+			<?php if(check_permission('s2s-transfer-add')){ ?>
+			<a class="dropdown-item" href="issue_entry.php"><i class="fa fa-bullseye" aria-hidden="true" style=""></i><span class="sub_menu_text_design">S2S  TRANSFER</span></a>
+			<?php } ?>
+			<?php if(check_permission('s2s-transfer-list')){ ?>
+			<a class="dropdown-item" href="issue_list.php"><i class="fa fa-bullseye" aria-hidden="true" style=""></i><span class="sub_menu_text_design">S2S LIST</span></a>
+		    <?php } ?>
+			
+			
+			
 		</div>
 	   </li>
+	 
 	  <?php if(check_permission('material-fghh-list')){ ?>
 	  <li class="nav-item dropdown no-arrow">
         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:#000;">
@@ -253,66 +370,12 @@
 	  <?php } ?>
         
 		
-		<?php if(check_permission('rlp-list')){ ?>
-        <li class="nav-item dropdown no-arrow">
-			<a class="nav-link dropdown-toggle" href="#" id="rlpDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:#000;">
-			  <b>RLP <i class="fa fa-caret-down"></i></b>
-			</a>
-			<div class="dropdown-menu dropdown-menu-right" aria-labelledby="rlpDropdown">
-				<?php if(check_permission('rlp-add')){ ?>
-				<a class="dropdown-item" href="rlp_create.php">
-					<i class="fa fa-bullseye" aria-hidden="true" style=""></i>
-					<span class="sub_menu_text_design"> RLP Entry</span>
-				</a> 
-				<?php } ?>
-				<a class="dropdown-item" href="rlp_list.php">
-					<i class="fa fa-bullseye" aria-hidden="true" style=""></i>
-					<span class="sub_menu_text_design"> RLP List</span>
-				</a> 
-				
-				<?php if(check_permission('rlp-adjustment')){ ?>
-				<a class="dropdown-item" href="rlp-adjustment.php">
-					<i class="fa fa-bullseye" aria-hidden="true" style=""></i>
-					<span class="sub_menu_text_design"> RLP Adjustment</span>
-				</a> 
-				<?php } ?>
-				
-				
-			</div>
-		</li>
-		<?php } ?>
-      <?php if(check_permission('notesheet-list')){ ?>
-      <li class="nav-item dropdown no-arrow">
-        <a class="nav-link dropdown-toggle" href="#" id="noteSheetDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:#000;">
-          <b>NOTESHEET <i class="fa fa-caret-down"></i></b>
-        </a>
 
-        
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="noteSheetDropdown">
-            
-            <a class="dropdown-item" href="notesheets_list.php">
-                <i class="fa fa-bullseye" aria-hidden="true" style=""></i>
-                <span class="sub_menu_text_design"> Notesheet List</span>
-            </a> 
-            
-        </div>
-      </li> 
-	  <?php } ?>
-		<?php if(check_permission('workorder-list')){ ?> 
-      <li class="nav-item dropdown no-arrow">
-        <a class="nav-link dropdown-toggle" href="#" id="workorderDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:#000;">
-          <b>WORK ORDER <i class="fa fa-caret-down"></i></b>
-        </a>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="workorderDropdown">
-
-            <a class="dropdown-item" href="workorders_list.php">
-                <i class="fa fa-bullseye" aria-hidden="true" style=""></i>
-                <span class="sub_menu_text_design"> Workorder List</span>
-            </a> 
-            
-        </div>
-      </li> 
-	  <?php } ?>
+      
+    
+	 
+		
+    
 		 
 	<?php if(check_permission('equipments-list')){ ?> 	
 	<li class="nav-item dropdown no-arrow">
@@ -374,10 +437,15 @@
         </div>
       </li>
 	  <?php } ?>
+	  
+	  
+	  
+	  
+	  
 
-       <!--- <li class="nav-item dropdown no-arrow">
+       <li class="nav-item dropdown no-arrow">
         <a class="nav-link dropdown-toggle" href="#" id="rentDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:#000;">
-          <b>RENT <i class="fa fa-caret-down"></i></b>
+          <b>INVOICE MANAGEMENT <i class="fa fa-caret-down"></i></b>
         </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="rentDropdown">
             <a class="dropdown-item" href="rental_rlp_create.php"><i class="fa fa-bullseye" aria-hidden="true" style=""></i><span class="sub_menu_text_design"> Rental RLP</span></a>
@@ -406,22 +474,23 @@
             </a> 
 
         </div>
-      </li> ---->
-		<?php if(check_permission('cs')){ ?>
-		<li class="nav-item dropdown no-arrow">
-        
-		<a class="nav-link" href="cs_list.php" id="userDropdown" style="color:#000;">
-          <b>CS</b>
-        </a>
-		
-		</li>
-		<?php } ?>
-		
-	  <li class="nav-item dropdown no-arrow">
+      </li> 
+	  
+	  
+	  
+	  
+	
+<li class="nav-item dropdown no-arrow">
         
 		<a class="nav-link" href="reports.php" id="userDropdown" style="color:#000;">
-          <b>REPORTS</b>
+          <b>REPORT</b>
         </a>
 		
-		</li>
+</li>
+		
+		
+		
+		
+		
+		
     </ul>
