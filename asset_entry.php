@@ -1,6 +1,5 @@
 <?php 
 include 'header.php';
-include 'includes/asset_process.php';
 ?>
 
 <div class="container-fluid">

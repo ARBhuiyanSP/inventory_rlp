@@ -24,7 +24,7 @@
 				<div class="col-xs-2">
 					<div class="form-group">
 						<label for="id">Client name</label>
-						<select name="client_name" id="client" class="form-control material_select_2">
+						<select name="client_name" id="client" class="form-control select2">
 							<option>Select Client</option>
 							<?php 
 							$sql	= "select * from `clients` ORDER BY `id` ASC";
@@ -42,7 +42,7 @@
 				<div class="col-xs-2">
 					<div class="form-group">
 						<label for="id">Project name</label>
-						<select class="form-control material_select_2" name="project_name" id="project">
+						<select class="form-control select2" name="project_name" id="project">
 							<option value="">select project</option>
 
 						</select>

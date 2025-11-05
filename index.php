@@ -9,7 +9,10 @@ if(isset($_SESSION['logged'])&&!empty($_SESSION['logged'])){
    exit();
 }
 
-               
+  // Fetch settings (assuming only 1 row)
+$query = "SELECT * FROM settings LIMIT 1";
+$result = mysqli_query($conn, $query);
+$settings = mysqli_fetch_assoc($result);             
 ?>
 <style>
 body {
@@ -35,7 +38,7 @@ body {
         <div class="container">
             <div class="card card-login mx-auto mt-5">
                 <div class="card-header" style="text-align: center;">
-                    <img src="images/logo-wide.png" />
+                    <img src="<?= $settings['logo']; ?>" height="50px;" />
                 </div>
                 <div class="card-body">
                     <form id="login_form" name="login_form" method="post">

@@ -1,6 +1,5 @@
 <?php 
 include 'header.php';
-include 'includes/asset_process.php';
 ?>
 <?php/*  if(!check_permission('user-add')){ 
         include("404.php");

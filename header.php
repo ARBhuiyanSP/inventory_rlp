@@ -39,6 +39,7 @@ include 'includes/order_process.php';
 include 'includes/role_process.php';
 include 'includes/op_process.php';
 include 'function/task_process.php';
+include 'includes/asset_process.php';
 
 // Fetch settings (assuming only 1 row)
 $query = "SELECT * FROM settings LIMIT 1";

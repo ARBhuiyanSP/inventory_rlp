@@ -8,7 +8,7 @@
 	<tbody>
 		<tr>
 			<td>
-				<select class="form-control material_select_2" name="equipments[]" id="equipments0" required >
+				<select class="form-control select2" name="equipments[]" id="equipments0" required >
 					<option value="">Select</option>
 					<?php
 					$projectsData = getRentableEquipments();
