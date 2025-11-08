@@ -50,7 +50,7 @@
 				<div class="form-group">
 					
 					<label>Assign To</label>
-					<select id="dv" name="assign_to" class="form-control material_select_2">
+					<select id="dv" name="assign_to" class="form-control select2">
 						<option>Select User</option>
 						<?php
 						$UserName            =   $_SESSION['logged']['user_name'];					

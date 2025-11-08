@@ -217,7 +217,7 @@
 			 
 			  
             <?php if(check_permission('approval-chain')){ ?>
-                    <a class="dropdown-item" href="notesheet_approve_chain_list.php">
+                    <a class="dropdown-item" href="notesheet_chain.php">
 						<i class="fa fa-bullseye" aria-hidden="true" style=""></i>
 						<span class="sub_menu_text_design"> NS Approval Chain</span>
 					</a>
@@ -465,9 +465,20 @@
 			<a class="dropdown-item" href="invoice_list.php">
                 <i class="fa fa-list" aria-hidden="true" style=""></i>
                 <span class="sub_menu_text_design"> Invoice List</span>
-            </a>
+            </a><hr>
 			
-			<a class="dropdown-item" href="invoice_list.php"><i class="fa fa-bullseye" aria-hidden="true" style=""></i><span class="sub_menu_text_design"> Bill Collection Entry/MR Entry</span></a>
+			
+			<a class="dropdown-item" href="rental-invoice.php"><i class="fa fa-bullseye" aria-hidden="true" style=""></i><span class="sub_menu_text_design"> Rental Invoice Entry</span></a>
+			<a class="dropdown-item" href="rental_invoice_list.php">
+                <i class="fa fa-list" aria-hidden="true" style=""></i>
+                <span class="sub_menu_text_design"> Rental Invoice List</span>
+            </a>
+			<hr>
+			
+			
+			
+			
+			<a class="dropdown-item" href="rental_invoice_list.php"><i class="fa fa-bullseye" aria-hidden="true" style=""></i><span class="sub_menu_text_design"> Bill Collection Entry/MR Entry</span></a>
             <a class="dropdown-item" href="mr_list.php">
                 <i class="fa fa-list" aria-hidden="true" style=""></i>
                 <span class="sub_menu_text_design"> Bill Collection List/MR List</span>

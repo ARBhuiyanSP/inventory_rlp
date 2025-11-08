@@ -1,6 +1,6 @@
 <?php 
 include 'header.php';
-if(!check_permission('rlp-chain-list')){ 
+if(!check_permission('notesheet-chain-list')){ 
     include("404.php");
     exit();
 }
@@ -13,7 +13,7 @@ if(isset($_POST['save'])){
     $division   = $_POST['division_id'];
     $department = $_POST['department_id'];
     $project    = $_POST['project_id'];
-    $rlp_type   = $_POST['rlp_type'];
+    $notesheet_type   = $_POST['notesheet_type'];
 
     $user_ids   = $_POST['user_id'] ?? [];
     $positions  = $_POST['position'] ?? [];
@@ -27,29 +27,29 @@ if(isset($_POST['save'])){
     $users_json = json_encode($users);
 
     if($id){ // update
-        $sql = "UPDATE rlp_access_chain SET 
+        $sql = "UPDATE notesheet_access_chain SET 
                 division_id='$division',
                 department_id='$department',
                 project_id='$project',
-                rlp_type='$rlp_type',
+                notesheet_type='$notesheet_type',
                 users='$users_json',
                 updated_by='$currentUser',
                 updated_at=NOW()
                 WHERE id='$id'";
     } else { // insert
-        $sql = "INSERT INTO rlp_access_chain 
-                (division_id, department_id, project_id, rlp_type, users, created_by, created_at)
-                VALUES ('$division','$department','$project','$rlp_type','$users_json','$currentUser',NOW())";
+        $sql = "INSERT INTO notesheet_access_chain 
+                (division_id, department_id, project_id, notesheet_type, users, created_by, created_at)
+                VALUES ('$division','$department','$project','$notesheet_type','$users_json','$currentUser',NOW())";
     }
     mysqli_query($conn,$sql);
-    header("Location: rlp_chain.php"); exit;
+    header("Location: notesheet_chain.php"); exit;
 }
 
 // --- DELETE ---
 if(isset($_GET['delete'])){
     $id = intval($_GET['delete']);
-    mysqli_query($conn,"DELETE FROM rlp_access_chain WHERE id=$id");
-    header("Location: rlp_chain.php"); exit;
+    mysqli_query($conn,"DELETE FROM notesheet_access_chain WHERE id=$id");
+    header("Location: notesheet_chain.php"); exit;
 }
 
 // --- EDIT LOAD ---
@@ -57,7 +57,7 @@ $edit = null;
 $edit_users = [];
 if(isset($_GET['edit'])){
     $id = intval($_GET['edit']);
-    $edit = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM rlp_access_chain WHERE id=$id"));
+    $edit = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM notesheet_access_chain WHERE id=$id"));
     $edit_users = json_decode($edit['users'],true);
 }
 ?>
@@ -73,7 +73,7 @@ if(isset($_GET['edit'])){
     <!-- Breadcrumbs-->
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="dashboard.php">Dashboard</a></li>
-        <li class="breadcrumb-item active">RLP Chain Info</li>
+        <li class="breadcrumb-item active">Notesheet Chain Info</li>
     </ol>
 
     <div class="card mb-3">
@@ -120,7 +120,7 @@ if(isset($_GET['edit'])){
 							<div class="col-md-4">
 								<div class="form-group">
                                     <label for="sel1">RLP Type:</label>
-                                    <select class="form-control" id="rlp_type" name="rlp_type">
+                                    <select class="form-control" id="notesheet_type" name="notesheet_type">
                                         <option value="">Please select</option>
                                         <?php
                                         $table = "rlp_types";
@@ -129,7 +129,7 @@ if(isset($_GET['edit'])){
                                         $datas = getTableDataByTableNameRlp($table, $order, $column);
                                         foreach ($datas as $data) {
                                             ?>
-                                            <option value="<?php echo $data->id; ?>" <?php if(isset($edit['rlp_type']) && $edit['rlp_type'] == $data->id){ echo 'selected'; } ?>><?php echo $data->name; ?></option>
+                                            <option value="<?php echo $data->id; ?>" <?php if(isset($edit['notesheet_type']) && $edit['notesheet_type'] == $data->id){ echo 'selected'; } ?>><?php echo $data->name; ?></option>
                                         <?php } ?>
                                     </select>
                                 </div>
@@ -188,7 +188,7 @@ if(isset($_GET['edit'])){
 					</form>
 				</div>
 				<div class="col-md-6">
-				<h3>Existing RLP Chains</h3>
+				<h3>Existing Notesheet Chains</h3>
             <table class="table table-bordered">
                 <tr>
 					<th width="22%">Division</th>
@@ -198,16 +198,16 @@ if(isset($_GET['edit'])){
 					<th width="12%">Action</th>
 				</tr>
                 <?php
-                $res=mysqli_query($conn,"SELECT * FROM rlp_access_chain ORDER BY id DESC");
+                $res=mysqli_query($conn,"SELECT * FROM notesheet_access_chain ORDER BY id DESC");
                 while($row=mysqli_fetch_assoc($res)){
                     $users=json_decode($row['users'],true);
 					$division =getDivisionNameById($row['division_id']);
 					$department =getDepartmentNameById($row['department_id']);
-					$rlp_type =getRlpTypeNameById($row['rlp_type']);
+					$notesheet_type =getRlpTypeNameById($row['notesheet_type']);
                     echo "<tr>
                             <td>{$division}</td>
                             <td>{$department}</td>
-                            <td>{$rlp_type}</td>
+                            <td>{$notesheet_type}</td>
                             <td>";
                     foreach($users as $uid=>$pos){
                         $uname=mysqli_fetch_assoc(mysqli_query($conn,"SELECT name FROM users WHERE id=$uid"));
@@ -215,9 +215,9 @@ if(isset($_GET['edit'])){
                     }
                     echo "</td>
                           <td>
-                            <a href='rlp_chain.php?edit={$row['id']}' class='btn btn-info btn-sm'><i class='fa fa-edit'></i>
+                            <a href='notesheet_chain.php?edit={$row['id']}' class='btn btn-info btn-sm'><i class='fa fa-edit'></i>
 </a>
-                            <a href='rlp_chain.php?delete={$row['id']}' class='btn btn-danger btn-sm' onclick='return confirm(\"Delete?\")'><i class='fa fa-trash'></i>
+                            <a href='notesheet_chain.php?delete={$row['id']}' class='btn btn-danger btn-sm' onclick='return confirm(\"Delete?\")'><i class='fa fa-trash'></i>
 </a>
                           </td>
                           </tr>";

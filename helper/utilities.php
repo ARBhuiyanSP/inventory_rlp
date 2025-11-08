@@ -829,6 +829,18 @@ function getDepartmentNameById($id){
     }
     return $name;
 }
+
+function getRlpTypeNameById($id){
+    global $conn;
+    $table  =   "rlp_types";
+    $sql = "SELECT * FROM $table WHERE id=$id";
+    $result = $conn->query($sql);
+    $name   =   '';
+    if ($result->num_rows > 0) {
+        $name   =   $result->fetch_object()->name;
+    }
+    return $name;
+}
 function getDepartmentShortNameById($id){
     global $conn;
     $table  =   "department";
@@ -1712,12 +1724,28 @@ function get_type_wise_rlp_chain_for_create($division_id,$department_id,$type){
     include 'partial/rlp_chain_for_form.php';
 }
 function get_user_department_wise_rlp_chain_for_create($division_id,$department_id){
-    $division_id    =   $_POST['division'];
-    $department_id  =   $_POST['department'];
+    /* $division_id    =   $_POST['division'];
+    $department_id  =   $_POST['department']; */
+	$division_id    =   $_SESSION['logged']['branch_id'];
+    $department_id  =   $_SESSION['logged']['department_id'];
     $table          =   "rlp_access_chain"
             . " WHERE chain_type='default'"
             . " AND division_id=$division_id"
             . " AND department_id=$department_id";
+    $defaultChain       =   getDataRowIdAndTable($table);
+    $defaultChainUsers  =   (isset($defaultChain) && !empty($defaultChain) ? json_decode($defaultChain->users) : "");
+    include 'partial/rlp_chain_for_form.php';
+}
+
+function get_user_department_type_wise_rlp_chain_for_create($division_id,$department_id,$rlp_type){
+    $division_id    =   $_POST['division'];
+    $department_id  =   $_POST['department'];
+    $rlp_type  		=   $_POST['rlp_type'];
+    $table          =   "rlp_access_chain"
+            . " WHERE chain_type='default'"
+            . " AND division_id=$division_id"
+            . " AND department_id=$department_id"
+            . " AND rlp_type=$rlp_type";
     $defaultChain       =   getDataRowIdAndTable($table);
     $defaultChainUsers  =   (isset($defaultChain) && !empty($defaultChain) ? json_decode($defaultChain->users) : "");
     include 'partial/rlp_chain_for_form.php';
@@ -3099,3 +3127,124 @@ function show_issue_details_data($item_details)
     </table>
 
 <?php }
+
+function numberToWords($number)
+{
+    $number = (float)$number;
+    if ($number == 0) {
+        return 'zero';
+    }
+
+    $negative = $number < 0;
+    $number = abs($number);
+    $wholePart = floor($number);
+    $fractionPart = round(($number - $wholePart) * 100);
+
+    $words = integerToWords($wholePart);
+
+    if ($fractionPart > 0) {
+        $words .= ' and ' . str_pad($fractionPart, 2, '0', STR_PAD_LEFT) . '/100';
+    }
+
+    if ($negative) {
+        $words = 'negative ' . $words;
+    }
+
+    return trim($words);
+}
+
+function integerToWords($number)
+{
+    $units = [
+        '',
+        'one',
+        'two',
+        'three',
+        'four',
+        'five',
+        'six',
+        'seven',
+        'eight',
+        'nine',
+        'ten',
+        'eleven',
+        'twelve',
+        'thirteen',
+        'fourteen',
+        'fifteen',
+        'sixteen',
+        'seventeen',
+        'eighteen',
+        'nineteen'
+    ];
+
+    $tens = [
+        '',
+        '',
+        'twenty',
+        'thirty',
+        'forty',
+        'fifty',
+        'sixty',
+        'seventy',
+        'eighty',
+        'ninety'
+    ];
+
+    $scales = [
+        '',
+        'thousand',
+        'million',
+        'billion',
+        'trillion'
+    ];
+
+    $words = [];
+
+    if ($number == 0) {
+        return 'zero';
+    }
+
+    $scaleIndex = 0;
+
+    while ($number > 0) {
+        $chunk = $number % 1000;
+
+        if ($chunk > 0) {
+            $chunkWords = [];
+
+            $hundreds = (int)($chunk / 100);
+            $remainder = $chunk % 100;
+
+            if ($hundreds > 0) {
+                $chunkWords[] = $units[$hundreds] . ' hundred';
+                if ($remainder > 0) {
+                    $chunkWords[] = 'and';
+                }
+            }
+
+            if ($remainder > 0) {
+                if ($remainder < 20) {
+                    $chunkWords[] = $units[$remainder];
+                } else {
+                    $chunkWords[] = $tens[(int)($remainder / 10)];
+                    $unit = $remainder % 10;
+                    if ($unit > 0) {
+                        $chunkWords[] = $units[$unit];
+                    }
+                }
+            }
+
+            if (!empty($scales[$scaleIndex])) {
+                $chunkWords[] = $scales[$scaleIndex];
+            }
+
+            array_unshift($words, implode(' ', $chunkWords));
+        }
+
+        $number = (int)($number / 1000);
+        $scaleIndex++;
+    }
+
+    return implode(' ', $words);
+}

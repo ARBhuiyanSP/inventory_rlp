@@ -147,8 +147,8 @@
 				
 				$prefix="RLP";
 				$formater_length=3;				
-				//$division_id    =   $_SESSION['logged']['branch_id'];
-				//$department_id  =   $_SESSION['logged']['department_id'];
+				$division_id    =   $_SESSION['logged']['branch_id'];
+				$department_id  =   $_SESSION['logged']['department_id'];
 				$office_id      =   $_SESSION['logged']['office_id'];
 				$user_id        =   $_SESSION['logged']['user_id']; 
 							
@@ -297,8 +297,7 @@
         </div>
     
         <div class="col-md-12">
-            <?php echo get_user_project_wise_rlp_chain_for_create(); ?>
-            <?php //echo get_type_wise_rlp_chain_for_create($division_id, $department_id,$type); ?>
+            <?php echo get_user_department_wise_rlp_chain_for_create($division_id, $department_id); ?>
         </div>
    
         <div class="col-sm-12">

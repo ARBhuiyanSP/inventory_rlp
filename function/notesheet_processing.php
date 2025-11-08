@@ -293,7 +293,16 @@ function getNotesheetListDataW(){
            
             $listData   = getTableDataListByTableName($sql);
 			
-	}else if($role_name == 'ap'){
+	}else if($role_name == 'ad'){
+			$listData   =   [];
+            // get others rlp for approval:
+            $listData1   = getNotesheetAcknowledgeData($user_id);
+            // get own RLp:
+			
+			$sql      = '* FROM `notesheets_master` WHERE 1=1 ORDER BY created_at DESC ';
+           
+            $listData   = getTableDataListByTableName($sql);
+	}else if($role_name == 'ab'){
 			$listData   =   [];
             // get others rlp for approval:
             $listData1   = getNotesheetAcknowledgeData($user_id);

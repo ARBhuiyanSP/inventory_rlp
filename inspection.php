@@ -116,9 +116,9 @@ include 'header.php';
 										<div class="form-group">
 											<label>Inspection Status</label>
 											<select id="dv" name="status" class="form-control select2">
-												<option value="ok">Running</option>
-												<option value="idle">Idle</option>
-												<option value="breakdown">Breakdown</option>
+												<option value="Running">Running</option>
+												<option value="Breakdown">Breakdown</option>
+												<option value="Idle">Idle</option>
 											</select>
 										</div>
 									</div>

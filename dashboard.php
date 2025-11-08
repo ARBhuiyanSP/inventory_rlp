@@ -96,7 +96,7 @@ $role_id        =   $_SESSION['logged']['role_id'];
             <center><p style="color: #7f8c8d;">Dynamic Management Dashboard</p></center>
         </div>
     </div>
-
+	<?php if(check_permission('fixed-assets')){ ?>
     <!-- ========================================
          AT A GLANCE SECTION - FIXED ASSETS & SERVICE
     ========================================= -->
@@ -177,7 +177,9 @@ $role_id        =   $_SESSION['logged']['role_id'];
             </div>
         </div>
     </div>
-
+	<?php } ?>
+	
+	<?php if(check_permission('dashboard-procurement')){ ?>
     <!-- ========================================
          PROCUREMENT SECTION
     ========================================= -->
@@ -294,7 +296,9 @@ $role_id        =   $_SESSION['logged']['role_id'];
             </div>
         </div>
     </div>
-
+	<?php } ?>
+	
+	<?php if(check_permission('dashboard-inventory')){ ?>
     <!-- ========================================
          INVENTORY SECTION
     ========================================= -->
@@ -430,7 +434,9 @@ $role_id        =   $_SESSION['logged']['role_id'];
             </div>
         </div>
     </div>
-
+	<?php } ?>
+	
+	<?php if(check_permission('dashboard-equipment')){ ?>
     <!-- ========================================
          EQUIPMENT SECTION
     ========================================= -->
@@ -450,9 +456,14 @@ $role_id        =   $_SESSION['logged']['role_id'];
         $result_equip_running = mysqli_query($conn, $sql_equip_running);
         $equip_running = ($result_equip_running && $row = mysqli_fetch_assoc($result_equip_running)) ? $row['total'] : 0;
         
-        $sql_equip_idle = "SELECT COUNT(*) as total FROM `equipments` WHERE `status`='breakdown'";
+        $sql_equip_idle = "SELECT COUNT(*) as total FROM `equipments` WHERE `status`='Idle'";
         $result_equip_idle = mysqli_query($conn, $sql_equip_idle);
         $equip_idle = ($result_equip_idle && $row = mysqli_fetch_assoc($result_equip_idle)) ? $row['total'] : 0;
+		
+		$sql_equip_breakdown = "SELECT COUNT(*) as total FROM `equipments` WHERE `status`='Breakdown'";
+        $result_equip_breakdown = mysqli_query($conn, $sql_equip_breakdown);
+        $equip_breakdown = ($result_equip_breakdown && $row = mysqli_fetch_assoc($result_equip_breakdown)) ? $row['total'] : 0;
+		
         
         $sql_equip_rented = "SELECT COUNT(*) as total FROM `equipments` WHERE `status`='Rented'";
         $result_equip_rented = mysqli_query($conn, $sql_equip_rented);
@@ -464,51 +475,62 @@ $role_id        =   $_SESSION['logged']['role_id'];
         $inspection_total = ($result_inspection && $row = mysqli_fetch_assoc($result_inspection)) ? $row['total'] : 0;
         ?>
         
-        <div class="col-lg-3 col-md-6">
-            <div class="stat-card purple">
-                <div class="stat-label">Total Equipment</div>
-                <div class="stat-number"><?php echo $equip_total; ?></div>
-                <a href="equipments-list.php" class="btn btn-sm btn-light" style="margin-top: 10px;">View All</a>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-6">
-            <div class="stat-card green">
-                <div class="stat-label">Running</div>
-                <div class="stat-number"><?php echo $equip_running; ?></div>
-                <small>Currently operational</small>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-6">
-            <div class="stat-card blue">
-                <div class="stat-label">Idle Equipment</div>
-                <div class="stat-number"><?php echo $equip_idle; ?></div>
-                <small>Not in use</small>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-6">
-            <div class="stat-card teal">
-                <div class="stat-label">Rented Out</div>
-                <div class="stat-number"><?php echo $equip_rented; ?></div>
-                <small>Currently rented</small>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-lg-3 col-md-6">
-            <div class="stat-card orange">
-                <div class="stat-label">Total Inspections</div>
-                <div class="stat-number"><?php echo $inspection_total; ?></div>
-                <a href="inspection-history.php" class="btn btn-sm btn-light" style="margin-top: 10px;">View History</a>
-            </div>
-        </div>
-        <div class="col-lg-9">
+        <div class="col-lg-6 col-md-6">
+			<div class="row">
+				<div class="col-lg-6 col-md-6">
+					<div class="stat-card purple">
+						<div class="stat-label">Total Equipment</div>
+						<div class="stat-number"><?php echo $equip_total; ?></div>
+						<a href="equipments-list.php" class="btn btn-sm btn-light" style="margin-top: 10px;">View All</a>
+					</div>
+				</div>
+				<div class="col-lg-6 col-md-6">
+					<div class="stat-card green">
+						<div class="stat-label">Running</div>
+						<div class="stat-number"><?php echo $equip_running; ?></div>
+						<small>Currently operational</small>
+					</div>
+				</div>
+				<div class="col-lg-6 col-md-6">
+					<div class="stat-card blue">
+						<div class="stat-label">Breakdown Equipment</div>
+						<div class="stat-number"><?php echo $equip_breakdown; ?></div>
+						<small>Not in use</small>
+					</div>
+				</div>
+				<div class="col-lg-6 col-md-6">
+					<div class="stat-card yellow">
+						<div class="stat-label">Idle Equipment</div>
+						<div class="stat-number"><?php echo $equip_idle; ?></div>
+						<small>Not in use</small>
+					</div>
+				</div>
+				<div class="col-lg-6 col-md-6">
+					<div class="stat-card teal">
+						<div class="stat-label">Rented Out</div>
+						<div class="stat-number"><?php echo $equip_rented; ?></div>
+						<small>Currently rented</small>
+					</div>
+				</div>
+				<div class="col-lg-6 col-md-6">
+					<div class="stat-card orange">
+						<div class="stat-label">Total Inspections</div>
+						<div class="stat-number"><?php echo $inspection_total; ?></div>
+						<a href="inspection-history.php" class="btn btn-sm btn-light" style="margin-top: 10px;">View History</a>
+					</div>
+				</div>
+			</div>
+		</div>
+        <div class="col-lg-6">
             <div class="chart-container">
                 <h5 style="font-weight: bold; color: #2c3e50;"><i class="fas fa-chart-pie"></i> Equipment Status Distribution</h5>
                 <div id="equipmentStatusChart"></div>
             </div>
         </div>
     </div>
+	<?php } ?>
+	<?php if(check_permission('dashboard-equipment-maintenance')){ ?>
+ 
 
     <!-- ========================================
          MAINTENANCE SECTION
@@ -519,21 +541,57 @@ $role_id        =   $_SESSION['logged']['role_id'];
 
     <div class="row">
 								<?php
-        // Maintenance Data (with error handling)
-        $sql_maintenance_count = "SELECT COUNT(*) as total FROM `maintenance_cost`";
-        $result_maintenance_count = mysqli_query($conn, $sql_maintenance_count);
-        $maintenance_count = ($result_maintenance_count && $row = mysqli_fetch_assoc($result_maintenance_count)) ? $row['total'] : 0;
+        // Maintenance Data - Combined from both sources (with error handling)
         
-        // Get total maintenance cost (with error handling)
-        $sql_maintenance_total = "SELECT SUM(total_cost) as total_cost FROM `maintenance_cost`";
-        $result_maintenance_total = mysqli_query($conn, $sql_maintenance_total);
-        $maintenance_cost = ($result_maintenance_total && $row = mysqli_fetch_assoc($result_maintenance_total)) ? ($row['total_cost'] ?? 0) : 0;
+        // Count scheduled maintenance from maintenance table
+        $sql_scheduled_count = "SELECT COUNT(*) as total FROM `maintenance`";
+        $result_scheduled_count = mysqli_query($conn, $sql_scheduled_count);
+        $scheduled_count = ($result_scheduled_count && $row = mysqli_fetch_assoc($result_scheduled_count)) ? $row['total'] : 0;
         
-        // Get this month maintenance cost (with error handling)
+        // Count maintenance cost entries
+        $sql_mc_count = "SELECT COUNT(*) as total FROM `maintenance_cost`";
+        $result_mc_count = mysqli_query($conn, $sql_mc_count);
+        $mc_count = ($result_mc_count && $row = mysqli_fetch_assoc($result_mc_count)) ? $row['total'] : 0;
+        
+        // Total maintenance count (both sources)
+        $maintenance_count = $scheduled_count + $mc_count;
+        
+        // Get total maintenance cost from scheduled maintenance (maintenance_details: qty * price)
+        $sql_scheduled_cost = "SELECT SUM(md.qty * md.price) as total_cost 
+                               FROM `maintenance_details` md 
+                               INNER JOIN `maintenance` m ON md.maintenance_id = m.id";
+        $result_scheduled_cost = mysqli_query($conn, $sql_scheduled_cost);
+        $scheduled_cost = ($result_scheduled_cost && $row = mysqli_fetch_assoc($result_scheduled_cost)) ? ($row['total_cost'] ?? 0) : 0;
+        
+        // Get total maintenance cost from maintenance_cost (maintenance_spare_parts: amount)
+        $sql_spare_cost = "SELECT SUM(amount) as total_cost FROM `maintenance_spare_parts`";
+        $result_spare_cost = mysqli_query($conn, $sql_spare_cost);
+        $spare_cost = ($result_spare_cost && $row = mysqli_fetch_assoc($result_spare_cost)) ? ($row['total_cost'] ?? 0) : 0;
+        
+        // Total maintenance cost (both sources)
+        $maintenance_cost = $scheduled_cost + $spare_cost;
+        
+        // Get this month maintenance cost (both sources)
         $current_month = date('Y-m');
-        $sql_month_cost = "SELECT SUM(total_cost) as total_cost FROM `maintenance_cost` WHERE DATE_FORMAT(created_at, '%Y-%m') = '$current_month'";
-        $result_month_cost = mysqli_query($conn, $sql_month_cost);
-        $month_cost = ($result_month_cost && $row = mysqli_fetch_assoc($result_month_cost)) ? ($row['total_cost'] ?? 0) : 0;
+        
+        // This month scheduled maintenance cost
+        $sql_month_scheduled = "SELECT SUM(md.qty * md.price) as total_cost 
+                                FROM `maintenance_details` md 
+                                INNER JOIN `maintenance` m ON md.maintenance_id = m.id 
+                                WHERE DATE_FORMAT(m.lastseervice_date, '%Y-%m') = '$current_month'";
+        $result_month_scheduled = mysqli_query($conn, $sql_month_scheduled);
+        $month_scheduled_cost = ($result_month_scheduled && $row = mysqli_fetch_assoc($result_month_scheduled)) ? ($row['total_cost'] ?? 0) : 0;
+        
+        // This month maintenance spare parts cost
+        $sql_month_spare = "SELECT SUM(msp.amount) as total_cost 
+                            FROM `maintenance_spare_parts` msp 
+                            INNER JOIN `maintenance_cost` mc ON msp.m_cost_id = mc.m_cost_id 
+                            WHERE DATE_FORMAT(mc.created_at, '%Y-%m') = '$current_month'";
+        $result_month_spare = mysqli_query($conn, $sql_month_spare);
+        $month_spare_cost = ($result_month_spare && $row = mysqli_fetch_assoc($result_month_spare)) ? ($row['total_cost'] ?? 0) : 0;
+        
+        // Total this month cost
+        $month_cost = $month_scheduled_cost + $month_spare_cost;
         ?>
         
         <div class="col-lg-3 col-md-6">
@@ -581,7 +639,8 @@ $role_id        =   $_SESSION['logged']['role_id'];
             </div>
         </div>
     </div>
-
+	<?php } ?>
+	<?php if(check_permission('dashboard-rental')){ ?>
     <!-- ========================================
          RENTAL SECTION
     ========================================= -->
@@ -597,7 +656,7 @@ $role_id        =   $_SESSION['logged']['role_id'];
         $rental_total = ($result_rental_total && $row = mysqli_fetch_assoc($result_rental_total)) ? $row['total'] : 0;
         
         // Total rental revenue (with error handling)
-        $sql_rental_revenue = "SELECT SUM(invoiceable_amount) as total FROM `rents`";
+        $sql_rental_revenue = "SELECT SUM(grandtotal) as total FROM `rents`";
         $result_rental_revenue = mysqli_query($conn, $sql_rental_revenue);
         $rental_revenue = ($result_rental_revenue && $row = mysqli_fetch_assoc($result_rental_revenue)) ? ($row['total'] ?? 0) : 0;
         
@@ -607,17 +666,17 @@ $role_id        =   $_SESSION['logged']['role_id'];
         $invoices_total = ($result_invoices && $row = mysqli_fetch_assoc($result_invoices)) ? $row['total'] : 0;
         
         // Collections (with error handling)
-        $sql_collections = "SELECT SUM(amount) as total FROM `client_balance` WHERE cb_cr_amount > 0";
+        $sql_collections = "SELECT SUM(cb_dr_amount) as total FROM `client_balance` WHERE cb_dr_amount > 0";
         $result_collections = mysqli_query($conn, $sql_collections);
         $collections_total = ($result_collections && $row = mysqli_fetch_assoc($result_collections)) ? ($row['total'] ?? 0) : 0;
         
         // Pending bills (with error handling)
-        $sql_pending_bills = "SELECT COUNT(*) as total FROM `rents` WHERE `bill_status`='Pending'";
+        $sql_pending_bills = "SELECT COUNT(*) as total FROM `rents` WHERE `bill_status`!='Paid'";
         $result_pending_bills = mysqli_query($conn, $sql_pending_bills);
         $pending_bills = ($result_pending_bills && $row = mysqli_fetch_assoc($result_pending_bills)) ? $row['total'] : 0;
         
         // Due amount (with error handling)
-        $sql_due = "SELECT SUM(due_amount) as total FROM `rents` WHERE `bill_status`='Pending'";
+        $sql_due = "SELECT SUM(due_amount) as total FROM `rents` WHERE `bill_status`!='Paid'";
         $result_due = mysqli_query($conn, $sql_due);
         $due_amount = ($result_due && $row = mysqli_fetch_assoc($result_due)) ? ($row['total'] ?? 0) : 0;
         ?>
@@ -684,6 +743,7 @@ $role_id        =   $_SESSION['logged']['role_id'];
             </div>
 						</div>
     </div>
+	<?php } ?>
 
 					</div>
       <!-- /.container-fluid -->
@@ -767,46 +827,105 @@ if(empty($project_data)) {
 // echo "<!-- Project Details: " . print_r($project_details, true) . " -->";
 
 // Top 10 Equipment by Maintenance Cost (with error handling)
+// Combine data from both maintenance sources
 $top_equipment = [];
-$sql_top_equip = "SELECT 
-                    COALESCE(e.eel_code, 'Unknown') as eel_code,
-                    COALESCE(e.name, 'Unknown Equipment') as name,
-                    SUM(mc.total_cost) as total_cost 
-                  FROM maintenance_cost mc 
-                  LEFT JOIN equipments e ON mc.eel_code = e.eel_code 
-                  GROUP BY mc.eel_code 
-                  HAVING SUM(mc.total_cost) > 0
-                  ORDER BY total_cost DESC 
-                  LIMIT 10";
-$result_top_equip = mysqli_query($conn, $sql_top_equip);
-if($result_top_equip && mysqli_num_rows($result_top_equip) > 0) {
-    while($row = mysqli_fetch_assoc($result_top_equip)) {
-        if(($row['total_cost'] ?? 0) > 0) {
-            $top_equipment[] = [
-                'name' => $row['eel_code'] . ' - ' . $row['name'],
-                'y' => (float)$row['total_cost']
-            ];
-        }
+
+// Get costs from maintenance_spare_parts (maintenance_cost source)
+$sql_spare_equip = "SELECT 
+                    mc.eel_code,
+                    SUM(msp.amount) as total_cost
+                  FROM maintenance_spare_parts msp
+                  INNER JOIN maintenance_cost mc ON msp.m_cost_id = mc.m_cost_id
+                  WHERE mc.eel_code IS NOT NULL AND mc.eel_code != ''
+                  GROUP BY mc.eel_code";
+$result_spare_equip = mysqli_query($conn, $sql_spare_equip);
+$equipment_costs = [];
+if($result_spare_equip && mysqli_num_rows($result_spare_equip) > 0) {
+    while($row = mysqli_fetch_assoc($result_spare_equip)) {
+        $equipment_costs[$row['eel_code']] = ($row['total_cost'] ?? 0);
     }
 }
+
+// Get costs from maintenance_details (scheduled maintenance source)
+$sql_scheduled_equip = "SELECT 
+                        m.equipment_id,
+                        SUM(md.qty * md.price) as total_cost
+                      FROM maintenance_details md
+                      INNER JOIN maintenance m ON md.maintenance_id = m.id
+                      WHERE m.equipment_id IS NOT NULL AND m.equipment_id != ''
+                      GROUP BY m.equipment_id";
+$result_scheduled_equip = mysqli_query($conn, $sql_scheduled_equip);
+if($result_scheduled_equip && mysqli_num_rows($result_scheduled_equip) > 0) {
+    while($row = mysqli_fetch_assoc($result_scheduled_equip)) {
+        $equipment_id = $row['equipment_id'];
+        if(!isset($equipment_costs[$equipment_id])) {
+            $equipment_costs[$equipment_id] = 0;
+        }
+        $equipment_costs[$equipment_id] += ($row['total_cost'] ?? 0);
+    }
+}
+
+// Sort by cost and get top 10
+arsort($equipment_costs);
+$equipment_costs = array_slice($equipment_costs, 0, 10, true);
+
+// Get equipment names and build chart data
+foreach($equipment_costs as $eel_code => $cost) {
+    $sql_equip_name = "SELECT name, eel_code FROM equipments WHERE eel_code = '$eel_code' OR id = '$eel_code' LIMIT 1";
+    $result_equip_name = mysqli_query($conn, $sql_equip_name);
+    if($result_equip_name && $row_name = mysqli_fetch_assoc($result_equip_name)) {
+        $equipment_label = $row_name['eel_code'] . ' - ' . $row_name['name'];
+    } else {
+        $equipment_label = $eel_code . ' - Unknown Equipment';
+    }
+    
+    if($cost > 0) {
+        $top_equipment[] = [
+            'name' => $equipment_label,
+            'y' => (float)$cost
+        ];
+    }
+}
+
 // Add default data if no results
 if(empty($top_equipment)) {
     $top_equipment[] = ['name' => 'No Data', 'y' => 0];
 }
 
 // Monthly Maintenance Trend (Last 6 months) with error handling
+// Combine data from both maintenance sources
 $maintenance_trend = [];
 for($i = 5; $i >= 0; $i--) {
     $month = date('Y-m', strtotime("-$i months"));
-    $sql_trend = "SELECT SUM(total_cost) as cost FROM maintenance_cost WHERE DATE_FORMAT(created_at, '%Y-%m') = '$month'";
-    $result_trend = mysqli_query($conn, $sql_trend);
-    $cost = 0;
-    if($result_trend && $row = mysqli_fetch_assoc($result_trend)) {
-        $cost = $row['cost'] ?? 0;
+    
+    // Get cost from maintenance_spare_parts (maintenance_cost source)
+    $sql_spare_trend = "SELECT SUM(msp.amount) as cost 
+                        FROM maintenance_spare_parts msp 
+                        INNER JOIN maintenance_cost mc ON msp.m_cost_id = mc.m_cost_id 
+                        WHERE DATE_FORMAT(mc.created_at, '%Y-%m') = '$month'";
+    $result_spare_trend = mysqli_query($conn, $sql_spare_trend);
+    $spare_cost = 0;
+    if($result_spare_trend && $row = mysqli_fetch_assoc($result_spare_trend)) {
+        $spare_cost = $row['cost'] ?? 0;
     }
+    
+    // Get cost from maintenance_details (scheduled maintenance source)
+    $sql_scheduled_trend = "SELECT SUM(md.qty * md.price) as cost 
+                            FROM maintenance_details md 
+                            INNER JOIN maintenance m ON md.maintenance_id = m.id 
+                            WHERE DATE_FORMAT(m.lastseervice_date, '%Y-%m') = '$month'";
+    $result_scheduled_trend = mysqli_query($conn, $sql_scheduled_trend);
+    $scheduled_cost = 0;
+    if($result_scheduled_trend && $row = mysqli_fetch_assoc($result_scheduled_trend)) {
+        $scheduled_cost = $row['cost'] ?? 0;
+    }
+    
+    // Combine both costs
+    $total_cost = $spare_cost + $scheduled_cost;
+    
     $maintenance_trend[] = [
         'month' => date('M Y', strtotime($month.'-01')),
-        'cost' => (float)$cost
+        'cost' => (float)$total_cost
     ];
 }
 
@@ -814,15 +933,28 @@ for($i = 5; $i >= 0; $i--) {
 $rental_trend = [];
 for($i = 5; $i >= 0; $i--) {
     $month = date('Y-m', strtotime("-$i months"));
-    $sql_rental = "SELECT SUM(invoiceable_amount) as revenue, SUM(deposit_amount) as collection 
-                   FROM rents WHERE DATE_FORMAT(created_at, '%Y-%m') = '$month'";
-    $result_rental = mysqli_query($conn, $sql_rental);
+    
+    // Get revenue from rents table using grandtotal (matching RENTAL MANAGEMENT section)
+    $sql_rental_revenue = "SELECT SUM(grandtotal) as revenue 
+                           FROM rents 
+                           WHERE DATE_FORMAT(created_at, '%Y-%m') = '$month'";
+    $result_rental_revenue = mysqli_query($conn, $sql_rental_revenue);
     $revenue = 0;
-    $collection = 0;
-    if($result_rental && $data = mysqli_fetch_assoc($result_rental)) {
+    if($result_rental_revenue && $data = mysqli_fetch_assoc($result_rental_revenue)) {
         $revenue = $data['revenue'] ?? 0;
+    }
+    
+    // Get collection from client_balance table using cb_dr_amount (matching RENTAL MANAGEMENT section)
+    $sql_rental_collection = "SELECT SUM(cb_dr_amount) as collection 
+                              FROM client_balance 
+                              WHERE cb_dr_amount > 0 
+                              AND DATE_FORMAT(created_at, '%Y-%m') = '$month'";
+    $result_rental_collection = mysqli_query($conn, $sql_rental_collection);
+    $collection = 0;
+    if($result_rental_collection && $data = mysqli_fetch_assoc($result_rental_collection)) {
         $collection = $data['collection'] ?? 0;
     }
+    
     $rental_trend[] = [
         'month' => date('M Y', strtotime($month.'-01')),
         'revenue' => (float)$revenue,
@@ -1064,6 +1196,7 @@ Highcharts.chart('equipmentStatusChart', {
         colorByPoint: true,
         data: [
             { name: 'Running', y: <?php echo $equip_running; ?>, color: '#43e97b' },
+            { name: 'Breakdown', y: <?php echo $equip_breakdown; ?>, color: '#FV538B' },
             { name: 'Idle', y: <?php echo $equip_idle; ?>, color: '#FB828B' },
             { name: 'Rented', y: <?php echo $equip_rented; ?>, color: '#667eea' }
         ]

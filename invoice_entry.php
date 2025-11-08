@@ -29,7 +29,7 @@ include 'header.php';
 								<td width="30%">
 									<div class="form-group">
 										<label for="id">Client name</label>
-										<select name="client_name" id="client" class="form-control material_select_2">
+										<select name="client_name" id="client" class="form-control select2">
 											<option>Select Client</option>
 											<?php 
 											$sql	= "select * from `clients` ORDER BY `id` ASC";
@@ -45,7 +45,7 @@ include 'header.php';
 								<td width="30%">
 									<div class="form-group">
 										<label for="id">Challan No</label>
-										<select class="form-control material_select_2" name="challan_no" id="project">
+										<select class="form-control select2" name="challan_no" id="project">
 											<option value="">select Challan</option>
 
 										</select>

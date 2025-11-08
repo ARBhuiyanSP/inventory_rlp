@@ -34,6 +34,7 @@ include 'function/user_management.php';
 include 'function/equipment_processing.php';
 include 'function/maintenance_cost_processing.php';
 include 'function/rent_processing.php';
+include 'function/rental_invoice_processing.php';
 include 'includes/user_process.php';
 include 'includes/order_process.php';
 include 'includes/role_process.php';
